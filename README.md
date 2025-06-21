@@ -22,15 +22,17 @@ Run the command-line tool:
 python -m backend.main pdf path/to/file.pdf
 python -m backend.main search "research topic"
 python -m backend.main multi-search "topic one" "topic two"
+python -m backend.main chat
 ```
 
 ## Example Demo
 
 You can run a short demonstration script that invokes the CLI with sample
-queries:
+queries. Run it with ``chat`` to start an interactive conversation:
 
 ```bash
 python examples/demo.py
+python examples/demo.py chat
 ```
 
 Pass your own queries to override the defaults:

@@ -1,7 +1,25 @@
 import argparse
 from .pdf_reader import read_pdf_text
 from .web_search import search_duckduckgo
-from .orchestrator import run_parallel_search
+from .orchestrator import run_parallel_search, compile_results
+
+
+def chat_loop() -> None:
+    """Interactive loop that searches the web for user queries."""
+    print("Type a query and press enter. Type 'exit' to quit.")
+    while True:
+        try:
+            query = input('> ').strip()
+        except EOFError:
+            break
+        if not query:
+            continue
+        if query.lower() in {'exit', 'quit'}:
+            break
+        results = run_parallel_search([query])
+        compiled = compile_results(results.get(query, []))
+        print(compiled)
+        print()
 
 
 def main():
@@ -19,6 +37,8 @@ def main():
     )
     multi_search_parser.add_argument("queries", nargs="+", help="List of queries")
 
+    subparsers.add_parser("chat", help="Start an interactive chat session")
+
     args = parser.parse_args()
 
     if args.command == "pdf":
@@ -35,6 +55,8 @@ def main():
             for title, url in res:
                 print(f"  {title}\n  {url}")
             print()
+    elif args.command == "chat":
+        chat_loop()
     else:
         parser.print_help()
 
