@@ -2,6 +2,7 @@ import argparse
 from .pdf_reader import read_pdf_text
 from .web_search import search_duckduckgo
 from .orchestrator import run_parallel_search, compile_results
+from .chat_agent import agent_chat_loop
 
 
 def chat_loop() -> None:
@@ -37,7 +38,10 @@ def main():
     )
     multi_search_parser.add_argument("queries", nargs="+", help="List of queries")
 
-    subparsers.add_parser("chat", help="Start an interactive chat session")
+    subparsers.add_parser("chat", help="Start a basic search-only chat session")
+    subparsers.add_parser(
+        "openai-chat", help="Chat using an OpenAI agent with tool calls"
+    )
 
     args = parser.parse_args()
 
@@ -57,6 +61,8 @@ def main():
             print()
     elif args.command == "chat":
         chat_loop()
+    elif args.command == "openai-chat":
+        agent_chat_loop()
     else:
         parser.print_help()
 
