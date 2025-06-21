@@ -15,3 +15,9 @@ def run_parallel_search(queries: List[str], max_results: int = 5) -> Dict[str, L
             query = future_to_query[future]
             results[query] = future.result()
     return results
+
+
+def compile_results(results: List[Tuple[str, str]]) -> str:
+    """Format search results as a numbered list string."""
+    lines = [f"{i}. {title}\n   {url}" for i, (title, url) in enumerate(results, start=1)]
+    return "\n".join(lines)
