@@ -24,6 +24,21 @@ python -m backend.main search "research topic"
 python -m backend.main multi-search "topic one" "topic two"
 ```
 
+## Example Demo
+
+You can run a short demonstration script that invokes the CLI with sample
+queries:
+
+```bash
+python examples/demo.py
+```
+
+Pass your own queries to override the defaults:
+
+```bash
+python examples/demo.py "query one" "query two"
+```
+
 ## Testing
 
 Tests use `pytest`:
