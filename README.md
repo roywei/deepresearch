@@ -16,6 +16,12 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
+To enable the OpenAI-powered chat mode, set your API key:
+
+```bash
+export OPENAI_API_KEY=your-key-here
+```
+
 Run the command-line tool:
 
 ```bash
@@ -23,6 +29,7 @@ python -m backend.main pdf path/to/file.pdf
 python -m backend.main search "research topic"
 python -m backend.main multi-search "topic one" "topic two"
 python -m backend.main chat
+python -m backend.main openai-chat
 ```
 
 ## Example Demo
